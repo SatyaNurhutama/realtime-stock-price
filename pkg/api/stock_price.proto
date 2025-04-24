@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package stock_price;
+
+option go_package =  "./api";
+
+service StockPriceService {
+    rpc GetStockPrice (StockPriceRequest) returns (StockPriceResponse);
+    rpc GetStockPriceStream (StockPriceRequest) returns (stream StockPriceResponse);
+}
+
+message StockPriceRequest {
+    string symbol = 1; // Stock symbol (e.g., "AAPL" for Apple)
+}
+
+message StockPriceResponse {
+    string symbol = 1;
+    double price = 2;
+    string timestamp = 3;
+}
